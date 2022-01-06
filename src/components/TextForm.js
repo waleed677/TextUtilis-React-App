@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter text here!!!");
+  const [text, setText] = useState("");
 
   const handleChange = (event) => {
     setText(event.target.value);
@@ -27,6 +27,12 @@ export default function TextForm(props) {
         <button className="btn btn-primary mt-3" onClick={handleUpClick}>
           UpperCase
         </button>
+      </div>
+
+      <div className="container">
+        <h2>
+          {text.split(" ").length - 1} words and {text.length} characters
+        </h2>
       </div>
     </>
   );
