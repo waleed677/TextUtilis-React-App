@@ -31,13 +31,19 @@ export default function TextForm(props) {
     <>
       <div className="mb-3">
         <label className="form-label">
-          <h1>{props.heading}</h1>
+          <h1 style={{ color: props.mode === "dark" ? "#fff" : "#000" }}>
+            {props.heading}
+          </h1>
         </label>
         <textarea
           className="form-control"
           id="textBox"
           rows="8"
           value={text}
+          style={{
+            backgroundColor: props.mode === "dark" ? "#000" : "#fff",
+            color: props.mode === "dark" ? "#fff" : "#000",
+          }}
           onChange={handleChange}
         ></textarea>
         <button className="btn btn-primary mt-3" onClick={handleUpClick}>
