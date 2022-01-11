@@ -46,19 +46,32 @@ export default function TextForm(props) {
           }}
           onChange={handleChange}
         ></textarea>
-        <button className="btn btn-primary mt-3" onClick={handleUpClick}>
+        <button
+          className="btn btn-primary mt-3"
+          onClick={handleUpClick}
+          disabled={text.length === 0}
+        >
           UpperCase
         </button>
-        <button className="btn btn-primary mt-3 mx-1" onClick={handleLoClick}>
+        <button
+          className="btn btn-primary mt-3 mx-1"
+          onClick={handleLoClick}
+          disabled={text.length === 0}
+        >
           LowerCase
         </button>
         <button
           className="btn btn-primary mt-3 mx-1 "
           onClick={handleFirstChar}
+          disabled={text.length === 0}
         >
           Capitalize First Letter
         </button>
-        <button className="btn btn-primary mt-3 " onClick={reset}>
+        <button
+          className="btn btn-primary mt-3 "
+          onClick={reset}
+          disabled={text.length === 0}
+        >
           Reset
         </button>
       </div>
@@ -70,7 +83,14 @@ export default function TextForm(props) {
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
                 Words{" "}
-                <span className="rightSide"> {text.split(" ").length - 1}</span>
+                <span className="rightSide">
+                  {" "}
+                  {
+                    text.split(" ").filter((el) => {
+                      return el.length !== 0;
+                    }).length
+                  }
+                </span>
               </li>
               <li className="list-group-item">
                 Characters <span className="rightSide">{text.length} </span>
