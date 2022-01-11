@@ -5,6 +5,13 @@ import TextForm from "./components/TextForm";
 import About from "./components/About";
 import React, { useState } from "react";
 import Alert from "./components/Alert";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Routes,
+  Link,
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -34,17 +41,27 @@ function App() {
   };
   return (
     <>
-      <Navbar
-        title="TextUtilis"
-        aboutText="About us"
-        mode={mode}
-        toggleMode={toggleModeSet}
-      />
-      <Alert content={alert} />
-      <div className="container my-5">
-        <TextForm heading="Enter text to analyze" mode={mode} />
-        {/* <About /> */}
-      </div>
+      <Router>
+        <Navbar
+          title="TextUtilis"
+          aboutText="About us"
+          mode={mode}
+          toggleMode={toggleModeSet}
+        />
+
+        <div className="container">
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<TextForm heading="Enter text to analyze" mode={mode} />}
+            ></Route>
+            <Route exact path="/about" element={<About />}></Route>
+          </Routes>
+        </div>
+
+        {/* <Alert content={alert} /> */}
+      </Router>
     </>
   );
 }
